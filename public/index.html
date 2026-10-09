@@ -1,1 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lantern — Web Proxy</title>
+<style>
+  :root {
+    --bg: #0f1220; --card: #181c30; --text: #eef0ff; --muted: #9aa0c3;
+    --accent: #ffb547; --accent2: #ff7a59; --ring: rgba(255,181,71,.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: radial-gradient(1200px 600px at 50% -10%, #25295a 0%, var(--bg) 60%);
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .logo { font-size: 56px; margin-bottom: 4px; filter: drop-shadow(0 0 24px var(--ring)); }
+  h1 { margin: 0; font-size: 40px; letter-spacing: -0.02em; }
+  h1 span { background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  p.sub { color: var(--muted); margin: 8px 0 28px; text-align: center; }
+  form { width: min(640px, 100%); display: flex; gap: 8px; background: var(--card); padding: 8px; border-radius: 16px; border: 1px solid #262b4d; box-shadow: 0 10px 40px rgba(0,0,0,.35); }
+  form:focus-within { border-color: var(--accent); box-shadow: 0 0 0 4px var(--ring), 0 10px 40px rgba(0,0,0,.35); }
+  input { flex: 1; background: transparent; border: 0; outline: 0; color: var(--text); font-size: 17px; padding: 12px 14px; }
+  input::placeholder { color: #6c7299; }
+  button { border: 0; cursor: pointer; font-weight: 600; font-size: 16px; padding: 0 22px; border-radius: 10px; color: #1a1300; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+  button:hover { filter: brightness(1.08); }
+  .quick { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 26px; max-width: 640px; }
+  .quick a { color: var(--text); text-decoration: none; background: var(--card); border: 1px solid #262b4d; padding: 8px 14px; border-radius: 999px; font-size: 14px; }
+  .quick a:hover { border-color: var(--accent); }
+  footer { margin-top: 40px; color: #6c7299; font-size: 12.5px; text-align: center; max-width: 520px; line-height: 1.5; }
+</style>
+</head>
+<body>
+  <div class="logo">🏮</div>
+  <h1><span>Lantern</span></h1>
+  <p class="sub">Type a web address or a search and go.</p>
 
+  <form action="/go" method="get" autocomplete="off">
+    <input name="q" placeholder="Search the web or enter a URL" autofocus required>
+    <button type="submit">Go</button>
+  </form>
+
+  <div class="quick">
+    <a href="/go?q=wikipedia.org">Wikipedia</a>
+    <a href="/go?q=news.ycombinator.com">Hacker News</a>
+    <a href="/go?q=archive.org">Internet Archive</a>
+    <a href="/go?q=duckduckgo.com">DuckDuckGo</a>
+    <a href="/go?q=reddit.com">Reddit</a>
+  </div>
+
+  <footer>
+    Some sites (heavy logins, video streaming, apps that need cookies or WebSockets) won't work through a simple proxy.
+    Please follow the rules of any network you're on.
+  </footer>
+</body>
+</html>
